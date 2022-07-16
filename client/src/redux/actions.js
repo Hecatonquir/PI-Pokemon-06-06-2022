@@ -4,7 +4,7 @@ import * as R from './reducer';
 export function getPokemons() {
 	return async (dispatch) => {
 		return await axios
-			.get('http://localhost:3001/pokemons')
+			.get('/pokemons')
 			.then((res) => dispatch({ type: R.GET_POKEMONS, payload: res.data }))
 			.catch('HUBO UN ERROR EN A.getPokemons');
 	};
@@ -12,7 +12,7 @@ export function getPokemons() {
 export function getTypes() {
 	return async (dispatch) => {
 		return await axios
-			.get('http://localhost:3001/types')
+			.get('/types')
 			.then((res) => dispatch({ type: R.GET_TYPES, payload: res.data }))
 			.catch('HUBO UN ERROR EN A.getTypes');
 	};
@@ -21,7 +21,7 @@ export function getTypes() {
 export function getPokemonsByName(input) {
 	return async (dispatch) => {
 		return await axios
-			.get(`http://localhost:3001/findpoke?name=${input}`)
+			.get(`/findpoke?name=${input}`)
 			.then((res) => dispatch({ type: R.GET_POKEMONS, payload: res.data }))
 			.catch('HUBO UN ERROR EN A.getPokemons');
 	};
