@@ -33,17 +33,12 @@ const apiPokemons = async function (req, res) {
 };
 
 const dbPokemons = async function (req, res) {
-	const created_pokemons = await Pokemon.findAll({
-		include: {
-			model: Type,
-			attributes: ['type'],
-		},
-	});
+	const created_pokemons = await Pokemon.findAll({ include: Type });
+
 	created_pokemons.map((e) => {
 		e.dataValues['type'] = e.dataValues['types'].map((e) => e.type);
 		delete e.dataValues['types'];
 	});
-
 	return created_pokemons;
 };
 
@@ -73,8 +68,8 @@ const getTypes = async (rqe, res) => {
 		const allTypes = await Type.findAll();
 		return allTypes;
 	} catch (error) {
-		const typesDb = await Type.findAll();
-		return typesDb;
+		const allTypes = await Type.findAll();
+		return allTypes;
 	}
 };
 const getTypes2 = async (req, res) => {
@@ -83,6 +78,7 @@ const getTypes2 = async (req, res) => {
 };
 
 const newPoke = async (req, res) => {
+	º;
 	const { name, hp, attack, defense, speed, height, weight, type, image } = req.body;
 
 	try {
